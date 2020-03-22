@@ -1,9 +1,9 @@
-import React from 'react';
-import ReactDOM from 'react-dom'
-import { BrowserRouter, Route, Switch } from 'react-router-dom';
+import React from "react";
+import ReactDOM from "react-dom";
+import { BrowserRouter, Route, Switch } from "react-router-dom";
 import AddUser from "./components/user/AddUser";
 import EditUser from "./components/user/EditUser";
-
+import "bootstrap/dist/css/bootstrap.min.css";
 
 function Root() {
   return (
@@ -16,4 +16,4 @@ function Root() {
   );
 }
 
-ReactDOM.render(<Root />, document.getElementById('root'));
+ReactDOM.render(<Root />, document.getElementById("root"));

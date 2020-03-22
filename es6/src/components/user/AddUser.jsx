@@ -1,9 +1,9 @@
-import * as React from 'react';
-import { Container } from 'react-bootstrap';
-import Form from 'react-jsonschema-form';
+import * as React from "react";
+import { Container } from "react-bootstrap";
+import Form from "react-jsonschema-form";
 import UserSchema from "../../schemas/UserSchema";
-import {formatStandartDate} from "../../utils/DateHelper";
-import {datePickerWidget} from "../../schemas/Widgets";
+import { formatStandartDate } from "../../utils/DateHelper";
+import { datePickerWidget } from "../../schemas/Widgets";
 
 class AddUser extends React.Component {
   constructor(props) {
@@ -12,7 +12,7 @@ class AddUser extends React.Component {
       formValues: null,
       employmentDate: null,
       firedDate: null,
-      rentStartDate: null,
+      rentStartDate: null
     };
 
     this.handleFormChange = this.handleFormChange.bind(this);
@@ -23,12 +23,12 @@ class AddUser extends React.Component {
   }
 
   onSubmit() {
-    console.log("Submiting my form!")
+    console.log("Submiting my form!");
   }
 
   handleFormChange(e) {
     this.setState({
-      formValues: e.formData,
+      formValues: e.formData
     });
   }
 
@@ -37,7 +37,7 @@ class AddUser extends React.Component {
     const employmentDate = formatStandartDate(value);
     this.setState({
       formValues: { ...formValues, employmentDate },
-      employmentDate,
+      employmentDate
     });
   }
 
@@ -46,7 +46,7 @@ class AddUser extends React.Component {
     const firedDate = formatStandartDate(value);
     this.setState({
       formValues: { ...formValues, firedDate },
-      firedDate,
+      firedDate
     });
   }
 
@@ -55,33 +55,30 @@ class AddUser extends React.Component {
     const rentStartDate = formatStandartDate(value);
     this.setState({
       formValues: { ...formValues, rentStartDate },
-      rentStartDate,
+      rentStartDate
     });
   }
 
-
   render() {
-    const {
-      formValues, employmentDate, firedDate, rentStartDate,
-    } = this.state;
+    const { formValues, employmentDate, firedDate, rentStartDate } = this.state;
 
     const widgets = {
-      employmentDatePicker: (props) => datePickerWidget(props, employmentDate, this.handleEmploymentDateChange),
-      firedDatePicker: (props) => datePickerWidget(props, firedDate, this.handleFiredDateChange),
-      rentStartDatePicker: (props) => datePickerWidget(props, rentStartDate, this.handleRentStartDateChange),
+      employmentDatePicker: props => datePickerWidget(props, employmentDate, this.handleEmploymentDateChange),
+      firedDatePicker: props => datePickerWidget(props, firedDate, this.handleFiredDateChange),
+      rentStartDatePicker: props => datePickerWidget(props, rentStartDate, this.handleRentStartDateChange)
     };
 
     return (
       <Container>
         <h2 className="text-center">Pridėti vartotoją</h2>
-          <Form
-            schema={UserSchema.initSchema()}
-            formData={formValues}
-            onChange={this.handleFormChange}
-            onSubmit={this.onSubmit}
-            uiSchema={UserSchema.uiSchema}
-            widgets={widgets}
-          />
+        <Form
+          schema={UserSchema.initSchema()}
+          formData={formValues}
+          onChange={this.handleFormChange}
+          onSubmit={this.onSubmit}
+          uiSchema={UserSchema.uiSchema}
+          widgets={widgets}
+        />
       </Container>
     );
   }
